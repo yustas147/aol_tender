@@ -38,6 +38,11 @@ class note_note(models.Model):
     @api.multi
     def open_mess(self):
         if self.mess_id:
+<<<<<<< HEAD
+=======
+#                 "views": [[False, "form"]],
+#                 }
+>>>>>>> 1fc66aafe1a63b3fb884c6d312135ef43b2ae281
             _mylog.info("Mess id is %s" % (self.mess_id.id))
             return {
                 'type': 'ir.actions.client',
