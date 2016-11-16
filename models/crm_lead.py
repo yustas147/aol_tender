@@ -38,12 +38,6 @@ class note_note(models.Model):
     @api.multi
     def open_mess(self):
         if self.mess_id:
-#             return {
-#                 'type': 'ir.actions.act_window',
-#                 'view_type': 'form',
-#                 'view_mode': 'form',
-#                 'res_model': 'mail.message',
-#                 'res_id': self.mess_id.id,
 #                 "views": [[False, "form"]],
 #                 }
             _mylog.info("Mess id is %s" % (self.mess_id.id))
@@ -61,13 +55,6 @@ class note_note(models.Model):
                       'display_intended_thread':1,
                            
                            },
-#                 'context': { 'default_model': 'res.users',
-#                             # 'default_res_id': self.mess_id.uid,
-#                             # 'thread_model': 'res.partner',
-#                             'search_disable_custom_filters': True,
-#                             #'id_is_222': True,
-#                              'needaction_menu_ref': ['mail.mail_tomefeeds', 'mail.mail_starfeeds'],
-#                               },
                } 
     
 

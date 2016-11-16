@@ -22,4 +22,5 @@
 
 
 #from . import mail_compose_message
-from . import crm_lead, raw_scan
+from . import crm_lead
+from models import rawscan
