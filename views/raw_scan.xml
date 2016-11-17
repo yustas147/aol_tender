@@ -1,6 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
+        <record model="ir.ui.view" id="aol_rawscan_base_form_view_id">
+            <field name="name">aol.rawscan.base.form</field>
+            <field name="model">aol.rawscan.base</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+              <group>
+                <field name="name" />
+                <field name="create_date" />
+<!--                 <field name="bin_body" />
+                <field name="bin_body_att" />
+ -->                <field name="datas" />
+                <button name='get_file_path' type='object' string='get file path'/>
+                <button name='parse_att' type='object' string='parse file att'/>
+              </group>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="aol_rawscan_base_tree_view_id">
+            <field name="name">aol.rawscan.base.tree</field>
+            <field name="model">aol.rawscan.base</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+              <tree>
+                <field name="create_date" />
+                <field name="name" />
+
+                <field name="datas" />
+<!--                 <field name="bin_body" />
+                <field name="body" />
+ -->            
+             </tree>
+            </field>
+        </record>
         <!-- <record model="ir.ui.view" id="email_compose_message_wizard_form_inherit">
             <field name="name">mail.compose.message.form.inherit</field>
             <field name="model">mail.compose.message</field>

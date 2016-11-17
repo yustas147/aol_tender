@@ -22,5 +22,4 @@
 
 
 #from . import mail_compose_message
-from . import crm_lead
-from models import rawscan
+from . import crm_lead, rawscan, yanp

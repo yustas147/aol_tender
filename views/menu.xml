@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record model='ir.actions.act_window' id='rawscan_base_act'>
+            <field name="name">Raw scans</field>
+            <field name="res_model">aol.rawscan.base</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record> 
+        
+        <menuitem name="Aol tender" id="aol_menu_root"/>
+            <menuitem name="Models" parent="aol_menu_root" id="technical1_id" sequence="10"/>
+                <menuitem action="rawscan_base_act" parent="technical1_id" id="rawscan_base_act_id" sequence="10" />
+        
+        
+    </data>
+</openerp>

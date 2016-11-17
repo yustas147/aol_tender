@@ -27,7 +27,8 @@
     'category': 'other',
     'depends': ['base','crm'],
     'data': [
-        'views/templates.xml'
+        'views/raw_scan.xml',
+        'views/menu.xml'
     ],
 #    'qweb': ['static/src/xml/mail_extended.xml'],
     'installable': True,

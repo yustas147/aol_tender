@@ -1,16 +1,39 @@
 # -*- coding: utf-8 -*-
 from openerp import api, models, fields
+from openerp.tools import logging
+from yanp import nessus_parser
+
+_mylog = logging.getLogger('yustas##########')
 
 class rawscan_base(models.Model):
     _name = 'aol.rawscan.base'
+    _inherits = {'ir.attachment':'att_id'}
     
 # load_date = builtin automatic create_date field
 #    type_of_scan = fields.Many2one(comodel_name='aol.scantype', string="Source of the scan")
+#    name = fields.Char(string='Scan data')
+    create_date = fields.Datetime(string='Created on:', readonly=True)
     body = fields.Text('Raw scan body')
+
+
+    #bin_body = fields.Binary('File of scan dump')
+    #bin_body_att = fields.Many2one(string='Dump file', comodel_name='ir.attachment')
     
     def raw_risk_create(self):
         # 
         pass
+    
+    @api.multi
+    def get_file_path(self):
+        _mylog.info('file path is: %s' % (unicode(self.att_id._full_path(self.att_id.store_fname))))
+        
+    @api.multi
+    def parse_att(self):
+        file_loc = self.att_id._full_path(self.att_id.store_fname)
+        np = nessus_parser(file_loc)
+        res = np.print_org_format()
+        _mylog.info(unicode(res))
+        
     
 
 #class scantype(models.Model):
@@ -19,7 +42,7 @@ class rawscan_base(models.Model):
 
 class  rawscan_nessus(models.Model):
     _name = 'aol.rawscan.nessus'
-    _inherits = {'aol.rawscan_base':'rawscan_base_id'}
+    _inherits = {'aol.rawscan.base':'rawscan_base_id'}
     
     def parse_asset(self):
         # extracts asset data from records , creates risk records
