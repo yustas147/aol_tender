@@ -9,11 +9,9 @@
               <group>
                 <field name="name" />
                 <field name="create_date" />
-<!--                 <field name="bin_body" />
-                <field name="bin_body_att" />
- -->                <field name="datas" />
-                <button name='get_file_path' type='object' string='get file path'/>
-                <button name='parse_att' type='object' string='parse file att'/>
+                <field name="datas" />
+<!--                 <button name='get_file_location' type='object' string='get file path'/>
+ -->                <button name='parse_att' type='object' string='parse file att'/>
               </group>
             </field>
         </record>
@@ -25,15 +23,60 @@
               <tree>
                 <field name="create_date" />
                 <field name="name" />
-
                 <field name="datas" />
-<!--                 <field name="bin_body" />
-                <field name="body" />
- -->            
              </tree>
             </field>
         </record>
-        <!-- <record model="ir.ui.view" id="email_compose_message_wizard_form_inherit">
+
+        <record model="ir.ui.view" id="aol_rawscan_nessus_form_id">
+            <field name="name">aol.rawscan.nessus.form</field>
+            <field name="model">aol.rawscan.nessus</field>
+            <!-- <field name="inherit_id" ref="aol_rawscan_base_form_view_id"/> -->
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+              <group>
+                <field name="name" />
+                <field name="create_date" />
+                <field name="datas" />
+                <button name='parse_att' type='object' string='parse nessus scan'/>
+              </group>
+                <!-- xpath expr="//button[@name='parse_att']" position="replace">
+                     <button name='parse_att' type='object' string='parse nessus scan'/>
+                </xpath>   -->
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="aol_rawscan_nessus_tree_id">
+            <field name="name">aol.rawscan.nessus.tree</field>
+            <field name="model">aol.rawscan.nessus</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+              <tree>
+                <field name="create_date" />
+                <field name="name" />
+                <field name="datas" />
+                <button name='parse_att' type='object' string='parse nessus scan'/>
+                <button name='risk_produce' type='object' string='produce risks'/>
+             </tree>
+            </field>
+        </record>
+        
+        
+
+<!--         <record model="ir.ui.view" id="aol_rawscan_base_tree_view_id">
+            <field name="name">aol.rawscan.base.tree</field>
+            <field name="model">aol.rawscan.base</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+              <tree>
+                <field name="create_date" />
+                <field name="name" />
+                <field name="datas" />
+             </tree>
+            </field>
+        </record>
+ -->
+         <!-- <record model="ir.ui.view" id="email_compose_message_wizard_form_inherit">
             <field name="name">mail.compose.message.form.inherit</field>
             <field name="model">mail.compose.message</field>
             <field name="inherit_id" ref="mail.email_compose_message_wizard_form"/>

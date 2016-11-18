@@ -29,6 +29,18 @@ import logging
 
 _mylog = logging.getLogger('YUSTAS#################################################')
 
+
+class crm_lead(models.Model):
+###Assume risk is crm_lead
+#class risk_base(models.Model):
+    _inherit='crm.lead'
+#    _name='aol.risk.base'
+    
+    rawscan_id = fields.Many2one(comodel_name='aol.rawscan.base', string='Origin scan')
+###assum asset is res.partner
+    type_id = fields.Many2one(comodel_name='aol.risk.type', string='Type of risk')
+
+
 '''
 class note_note(models.Model):
     _inherit = 'note.note'
