@@ -44,19 +44,25 @@ class rawscan_base(models.Model):
     
     @api.multi
     def process_scanParseResults(self, **kwargs):
+        #riskEnv = self.env['crm.lead']
         for host, risks in kwargs.iteritems():
             instAsset = self.procAsset(host)
             for risk in risks:
-                self.procRisk(asset=instAsset, risk=risk)
+                r_inst = self.procRisk(asset=instAsset, risk=risk)
+                if r_inst:
+                    r_inst.create_attrs(**risk)
                 
     @api.multi
     def procRisk(self, asset=None, risk=None):        
         envRisk = self.env['crm.lead']
-        envRiskTypeValue = self.env['aol.risk.type.value']
+      #  envRiskTypeValue = self.env['aol.attr.value']
         # need to implement check for existing risk
         def get_risk_name(risk):
             return unicode("Category: [%s] Descr: [%s] Severity: [%s]" % (risk['service_name'],risk['plugin_name'],risk['cvss']))
-        return envRisk.create({'name': get_risk_name(risk), 'partner_id':asset.id, 'description':unicode(risk), 'rawscan_id':self.id, })
+        
+        risk_name = get_risk_name(risk)
+        if not envRisk.search([('rawscan_id','=', self.id),('name','=',risk_name)]):
+            return envRisk.create({'name': get_risk_name(risk), 'partner_id':asset.id, 'description':unicode(risk), 'rawscan_id':self.id, })
 
 
 
@@ -98,7 +104,7 @@ class attr_value(models.Model):
     value = fields.Char(string='Value')
     attr_id = fields.Many2one(comodel_name='aol.attr', string='Attribute')
     #type_id = fields.Many2one(comodel_name='aol.risk.type', string='Risk type value')
-    risk_id = fields.Many2one(comodel_name='crm.lead', string='Risk')
+    risk_id = fields.Many2one(comodel_name='crm.lead', string='Risk', ondelete='cascade')
     
     
 class attribute(models.Model):
