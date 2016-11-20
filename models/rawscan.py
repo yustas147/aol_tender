@@ -92,12 +92,14 @@ class risk_type(models.Model):
     
     name = fields.Char(string='Risk type name')
     
-class risk_attr_value(models.Model):
-    _name = 'aol.risk.attr.value'
+class attr_value(models.Model):
+    _name = 'aol.attr.value'
     
+    value = fields.Char(string='Value')
     attr_id = fields.Many2one(comodel_name='aol.attr', string='Attribute')
     #type_id = fields.Many2one(comodel_name='aol.risk.type', string='Risk type value')
     risk_id = fields.Many2one(comodel_name='crm.lead', string='Risk')
+    
     
 class attribute(models.Model):
     _name = 'aol.attr'

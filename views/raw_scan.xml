@@ -61,6 +61,33 @@
             </field>
         </record>
         
+        <record model="ir.ui.view" id="aol_attr_value_form_id">
+            <field name="name">aol.attr.value.form</field>
+            <field name="model">aol.attr.value</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+              <group>
+                <field name="value" />
+                <field name="attr_id" />
+                <field name="risk_id" />
+              </group>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="aol_attr_value_tree_id">
+            <field name="name">aol.attr.value.tree</field>
+            <field name="model">aol.attr.value</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+              <tree>
+                <field name="value" />
+                <field name="attr_id" />
+                <field name="risk_id" />
+              </tree>
+            </field>
+        </record>
+        
+            
+ 
         
 
 <!--         <record model="ir.ui.view" id="aol_rawscan_base_tree_view_id">

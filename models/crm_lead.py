@@ -37,8 +37,10 @@ class crm_lead(models.Model):
 #    _name='aol.risk.base'
     
     rawscan_id = fields.Many2one(comodel_name='aol.rawscan.base', string='Origin scan')
-###assum asset is res.partner
+#assum asset is res.partner
     type_id = fields.Many2one(comodel_name='aol.risk.type', string='Type of risk')
+    attr_val_ids = fields.One2many(comodel_name='aol.attr.val', inverse_name='risk_id', 
+                                  string='Risk attribute values')
 
 
 '''
