@@ -52,6 +52,7 @@ class rawscan_base(models.Model):
     @api.multi
     def procRisk(self, asset=None, risk=None):        
         envRisk = self.env['crm.lead']
+        envRiskTypeValue = self.env['aol.risk.type.value']
         # need to implement check for existing risk
         def get_risk_name(risk):
             return unicode("Category: [%s] Descr: [%s] Severity: [%s]" % (risk['service_name'],risk['plugin_name'],risk['cvss']))
@@ -88,6 +89,23 @@ class  rawscan_nessus(models.Model):
 
 class risk_type(models.Model):
     _name = 'aol.risk.type'
+    
+    name = fields.Char(string='Risk type name')
+    
+class risk_attr_value(models.Model):
+    _name = 'aol.risk.attr.value'
+    
+    attr_id = fields.Many2one(comodel_name='aol.attr', string='Attribute')
+    #type_id = fields.Many2one(comodel_name='aol.risk.type', string='Risk type value')
+    risk_id = fields.Many2one(comodel_name='crm.lead', string='Risk')
+    
+class attribute(models.Model):
+    _name = 'aol.attr'
+    
+    name = fields.Char(string='Attribute')
+    
+    
+
     
 ###Assume asset is res.partner
 class res_partner(models.Model):
