@@ -36,11 +36,13 @@ class crm_lead(models.Model):
     _inherit='crm.lead'
 #    _name='aol.risk.base'
     
+    is_risk = fields.Boolean(string='AOL risk')
     rawscan_id = fields.Many2one(comodel_name='aol.rawscan.base', string='Origin scan')
 #assum asset is res.partner
     type_id = fields.Many2one(comodel_name='aol.risk.type', string='Type of risk')
     attr_val_ids = fields.One2many(comodel_name='aol.attr.value', inverse_name='risk_id', 
                                   string='Risk attribute values')
+    
    
     @api.multi  
     def create_attrs(self, **kwargs):
@@ -54,37 +56,3 @@ class crm_lead(models.Model):
             attr_valEnv.create({'value':unicode(v), 'attr_id':attr_rec.id, 'risk_id':self.id})
             
             
-        
-
-
-'''
-class note_note(models.Model):
-    _inherit = 'note.note'
-    
-    mess_id = fields.Many2one('mail.message', string='Created from:')
-    
-    @api.multi
-    def open_mess(self):
-        if self.mess_id:
-<<<<<<< HEAD
-=======
-#                 "views": [[False, "form"]],
-#                 }
->>>>>>> 1fc66aafe1a63b3fb884c6d312135ef43b2ae281
-            _mylog.info("Mess id is %s" % (self.mess_id.id))
-            return {
-                'type': 'ir.actions.client',
-                #'name': 'Inbox',
-                'tag': 'mail.wall',
-                'res_model': 'mail.message',
-                'params': {
-                    'domain':[('id','=',self.mess_id.id)],
-                      'truncate_limit':10,
-                      'display_intended_thread':1,
-                           
-                           },
-               } 
-    
-        self.res_id = self.env['note.note'].create({'name':self.subject, 'memo':self.body, 'mess_id':self.id})
-#             sent_date = self._get_date(cr, uid, rec.date, context=context)
-'''

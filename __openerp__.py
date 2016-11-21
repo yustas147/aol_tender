@@ -28,6 +28,7 @@
     'depends': ['base','crm'],
     'data': [
         'views/raw_scan.xml',
+        'views/crm_lead.xml',
         'views/menu.xml'
     ],
 #    'qweb': ['static/src/xml/mail_extended.xml'],

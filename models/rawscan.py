@@ -62,7 +62,7 @@ class rawscan_base(models.Model):
         
         risk_name = get_risk_name(risk)
         if not envRisk.search([('rawscan_id','=', self.id),('name','=',risk_name)]):
-            return envRisk.create({'name': get_risk_name(risk), 'partner_id':asset.id, 'description':unicode(risk), 'rawscan_id':self.id, })
+            return envRisk.create({'name': get_risk_name(risk), 'is_risk':True, 'partner_id':asset.id, 'description':unicode(risk), 'rawscan_id':self.id, })
 
 
 
