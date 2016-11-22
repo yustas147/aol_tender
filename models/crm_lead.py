@@ -59,11 +59,14 @@ class crm_lead(models.Model):
     @api.onchange('type_id')
     def _onchange_risk_type(self):
         attr_val_env = self.env['aol.attr.value']
+        o2m_vals=[]
         for attrib in self.type_id.risk_attr_ids:
             #print unicode(attrib)
    #         _mylog.info(unicode(attrib))
             if attrib not in [attr_val.attr_id for attr_val in self.attr_val_ids]:
                 _mylog.info(unicode(attrib))
-                attr_val_env.create({'value':False, 'risk_id':self.id, 'attr_id':attrib.id})
+                #attr_val_env.create({'value':False, 'risk_id':self.id, 'attr_id':attrib.id})
+                o2m_vals.append((0,0,{'value':False, 'risk_id':self.id, 'attr_id': attrib.id}))
+        self.update({'attr_val_ids':o2m_vals})
                 
     
