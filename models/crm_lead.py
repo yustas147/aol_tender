@@ -55,4 +55,15 @@ class crm_lead(models.Model):
                 attr_rec = attrEnv.create({'name':unicode(k)})
             attr_valEnv.create({'value':unicode(v), 'attr_id':attr_rec.id, 'risk_id':self.id})
             
-            
+    @api.multi
+    @api.onchange('type_id')
+    def _onchange_risk_type(self):
+        attr_val_env = self.env['aol.attr.value']
+        for attrib in self.type_id.risk_attr_ids:
+            #print unicode(attrib)
+   #         _mylog.info(unicode(attrib))
+            if attrib not in [attr_val.attr_id for attr_val in self.attr_val_ids]:
+                _mylog.info(unicode(attrib))
+                attr_val_env.create({'value':False, 'risk_id':self.id, 'attr_id':attrib.id})
+                
+    

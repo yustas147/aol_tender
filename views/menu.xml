@@ -19,12 +19,32 @@
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
         </record> 
+        <record model='ir.actions.act_window' id='aol_attr_act'>
+            <field name="name">Attributes</field>
+            <field name="res_model">aol.attr</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record> 
+        <record model='ir.actions.act_window' id='aol_risk_type_act'>
+            <field name="name">Risk types</field>
+            <field name="res_model">aol.risk.type</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record> 
+        <record model='ir.actions.act_window' id='aol_risk_act'>
+            <field name="name">Risks</field>
+            <field name="res_model">crm.lead</field>
+            <field name="domain">[('is_risk', '=', True)]</field>
+        </record> 
         
         <menuitem name="Aol tender" id="aol_menu_root"/>
             <menuitem name="Models" parent="aol_menu_root" id="technical1_id" sequence="10"/>
                 <menuitem action="rawscan_nessus_act" parent="technical1_id" id="rawscan_nessus_act_id" sequence="10" />
                 <menuitem action="rawscan_base_act" parent="technical1_id" id="rawscan_base_act_id" sequence="30" />
+                <menuitem action="aol_risk_type_act" parent="technical1_id" id="aol_risk_type_act_id" sequence="50" />
+                <menuitem action="aol_attr_act" parent="technical1_id" id="aol_attr_act_id" sequence="60" />
                 <menuitem action="aol_attr_val_act" parent="technical1_id" id="aol_attr_val_act_id" sequence="70" />
+                <menuitem action="aol_risk_act" parent="technical1_id" id="aol_risk_act_id" sequence="80" />
         
         
     </data>

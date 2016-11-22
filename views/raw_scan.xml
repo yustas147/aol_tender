@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
+    
+    <!-- aol.rawscan.base -->
         <record model="ir.ui.view" id="aol_rawscan_base_form_view_id">
             <field name="name">aol.rawscan.base.form</field>
             <field name="model">aol.rawscan.base</field>
@@ -27,7 +29,9 @@
              </tree>
             </field>
         </record>
+    <!-- ###########################################################      aol.rawscan.base -->
 
+    <!-- aol.rawscan.nessus -->
         <record model="ir.ui.view" id="aol_rawscan_nessus_form_id">
             <field name="name">aol.rawscan.nessus.form</field>
             <field name="model">aol.rawscan.nessus</field>
@@ -60,7 +64,9 @@
              </tree>
             </field>
         </record>
+    <!-- ###########################################################      aol.rawscan.nessus -->
         
+    <!-- aol.attr.value -->
         <record model="ir.ui.view" id="aol_attr_value_form_id">
             <field name="name">aol.attr.value.form</field>
             <field name="model">aol.attr.value</field>
@@ -85,10 +91,67 @@
               </tree>
             </field>
         </record>
+    <!-- ###########################################################      aol.attr.value -->
         
-            
+    <!-- aol.attr -->        
+        <record model="ir.ui.view" id="aol_attr_form_id">
+            <field name="name">aol.attr.form</field>
+            <field name="model">aol.attr</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+              <group>
+                <field name="name" />
+                <field name="risk_type_ids" />
+                <field name="attr_value_ids" />
+              </group>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="aol_attr_tree_id">
+            <field name="name">aol.attr.tree</field>
+            <field name="model">aol.attr</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+              <tree>
+                <field name="name" />
+                <field name="attr_value_ids" />
+                <field name="risk_type_ids" />
+              </tree>
+            </field>
+        </record>
  
+ 
+    <!-- ###########################################################      aol.attr -->
         
+    <!-- aol.risk.type -->        
+        <record model="ir.ui.view" id="aol_risk_type_form_id">
+            <field name="name">aol.risk.type.form</field>
+            <field name="model">aol.risk.type</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+              <group>
+                <field name="name" />
+                <field name="risk_attr_ids" />
+                <field name="risk_ids" />
+              </group>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="aol_risk_type_tree_id">
+            <field name="name">aol.risk.type.tree</field>
+            <field name="model">aol.risk.type</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+              <tree>
+                <field name="name" />
+                <field name="risk_attr_ids" />
+                <field name="risk_ids" />
+              </tree>
+            </field>
+        </record>
+ 
+ 
+    <!-- ###########################################################      aol.attr -->
+        
+
 
 <!--         <record model="ir.ui.view" id="aol_rawscan_base_tree_view_id">
             <field name="name">aol.rawscan.base.tree</field>

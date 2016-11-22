@@ -96,7 +96,13 @@ class  rawscan_nessus(models.Model):
 class risk_type(models.Model):
     _name = 'aol.risk.type'
     
-    name = fields.Char(string='Risk type name')
+    name = fields.Char(string='Risk type')
+    risk_attr_ids = fields.Many2many(comodel_name='aol.attr', relation='risk_type_attr', 
+                                      column1='rtype', 
+                                      column2='attrib', 
+                                      string='Risk attributes')
+    risk_ids = fields.One2many(comodel_name='crm.lead', inverse_name='type_id', 
+                              string='Risks (just for info)')
     
 class attr_value(models.Model):
     _name = 'aol.attr.value'
@@ -111,6 +117,9 @@ class attribute(models.Model):
     _name = 'aol.attr'
     
     name = fields.Char(string='Attribute')
+    attr_value_ids = fields.One2many(comodel_name='aol.attr.value', inverse_name='attr_id', 
+                                    string='Values (just for info)')
+    risk_type_ids = fields.Many2many(comodel_name='aol.risk.type', relation='risk_type_attr', column1='attrib', column2='rtype', string='Risk types')
     
     
 
