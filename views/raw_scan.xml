@@ -130,6 +130,7 @@
             <field name="arch" type="xml">
               <group>
                 <field name="name" />
+                <field name="description" />
                 <field name="risk_attr_ids" />
                 <field name="risk_ids" />
               </group>
@@ -142,6 +143,7 @@
             <field name="arch" type="xml">
               <tree>
                 <field name="name" />
+                <field name="description" />
                 <field name="risk_attr_ids" />
                 <field name="risk_ids" />
               </tree>
@@ -149,7 +151,12 @@
         </record>
  
  
-    <!-- ###########################################################      aol.attr -->
+    
+    
+    
+    
+    
+    
         
 
 

@@ -36,6 +36,12 @@
             <field name="res_model">crm.lead</field>
             <field name="domain">[('is_risk', '=', True)]</field>
         </record> 
+        <record model='ir.actions.act_window' id='aol_asset_act'>
+            <field name="name">Assets</field>
+            <field name="res_model">res.partner</field>
+            <field name="domain">[('is_asset', '=', True)]</field>
+        </record> 
+        
         
         <menuitem name="Aol tender" id="aol_menu_root"/>
             <menuitem name="Models" parent="aol_menu_root" id="technical1_id" sequence="10"/>
@@ -45,7 +51,7 @@
                 <menuitem action="aol_attr_act" parent="technical1_id" id="aol_attr_act_id" sequence="60" />
                 <menuitem action="aol_attr_val_act" parent="technical1_id" id="aol_attr_val_act_id" sequence="70" />
                 <menuitem action="aol_risk_act" parent="technical1_id" id="aol_risk_act_id" sequence="80" />
-        
+                <menuitem action="aol_asset_act" parent="technical1_id" id="aol_asset_act_id" sequence="90" />
         
     </data>
 </openerp>

@@ -97,6 +97,7 @@ class risk_type(models.Model):
     _name = 'aol.risk.type'
     
     name = fields.Char(string='Risk type')
+    description = fields.Text(string='Short Description')
     risk_attr_ids = fields.Many2many(comodel_name='aol.attr', relation='risk_type_attr', 
                                       column1='rtype', 
                                       column2='attrib', 
@@ -124,9 +125,9 @@ class attribute(models.Model):
     
 
     
-###Assume asset is res.partner
-class res_partner(models.Model):
-#class asset_base(models.Model):
-    _inherit='res.partner'
-#    _name='aol.asset.base'
+####Assume asset is res.partner
+#class res_partner(models.Model):
+##class asset_base(models.Model):
+    #_inherit='res.partner'
+##    _name='aol.asset.base'
     

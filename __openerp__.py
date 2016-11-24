@@ -29,6 +29,7 @@
     'data': [
         'views/raw_scan.xml',
         'views/crm_lead.xml',
+        'views/inherited_res_partner.xml',
         'views/menu.xml'
     ],
 #    'qweb': ['static/src/xml/mail_extended.xml'],

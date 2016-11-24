@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="inherited_view_partner_form_inherit_aol" model="ir.ui.view" >
+            <field name="name">res.partner.form.inherit.aol</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <xpath expr="//label[@for='is_company']" position='after'>
+                    <field name="is_asset"/>
+                    <label for="is_asset" string="Is Asset?"/>
+                </xpath>
+                <!--<xpath expr="//sheet/group/group" position='before'>-->
+                    <!--<field name="is_risk"/>-->
+                <!--</xpath>-->
+                <xpath expr="//sheet/group" position="attributes">
+                    <attribute name="attrs">{'invisible':[('is_asset','=',True)]}</attribute>
+                </xpath>
+                <xpath expr="//sheet/notebook" position="before">
+                    <field name="risk_ids" attrs="{'invisible':[('is_asset','=',False)]}" />
+                </xpath>
+                <!--<field name='partner_id' position='replace'/>-->
+                <!--<xpath expr="//field[@name='contact_name']" position='after'>-->
+                    <!--<div>-->
+                        <!--<label for="partner_id" attrs="{'invisible': [('is_risk','=',True)]}"/>-->
+                        <!--<label for="partner_id" string='Asset' attrs="{'invisible': [('is_risk','=',False)]}"/>-->
+                        <!--<field name='partner_id' />-->
+                    <!--</div>-->
+                <!--</xpath>-->
+                <!--<xpath expr="//notebook" position='after'>-->
+                   <!--<group name='risk_group' attrs="{'invisible':[('is_risk','=',False)]}">-->
+                    <!--<field name='rawscan_id'/>-->
+                    <!--<field name='type_id'/>-->
+                    <!--<field name='attr_val_ids'/>-->
+                   <!--</group>-->
+                <!--</xpath>-->
+                <!--<field name='partner_id' position='attributes'>-->
+                    <!--<attribute name='string'>'Asset'</attribute>-->
+                <!--</field>-->
+                <!--<xpath expr="//field[@name='partner_name']" position='before'>-->
+                    <!--<field name="is_risk"/>-->
+                <!--</xpath>-->
+                <!--<field name='mobile' position='after'>-->
+                    <!--<field name="fax" attrs='{"invisible":[("is_risk","=",True)]}'/>-->
+                <!--</field>-->
+                <!--<field name='partner_id' position='replace'/>-->
+                <!--<field name='partner_id' position='before'>-->
+                    <!--<label for='partner_id' string='Asset' attrs="{'invisible':[('is_risk','=',False)]}"/>-->
+                <!--</field>-->
+            </field>
+        </record>
+    </data>
+</openerp>
