@@ -22,4 +22,4 @@
 
 
 #from . import mail_compose_message
-from . import crm_lead, rawscan, yanp, asset_partner
+from . import inherited_crm_lead, rawscan, yanp, inherited_res_partner
