@@ -9,7 +9,10 @@
             <field name="arch" type="xml">
                 <xpath expr="//label[@for='is_company']" position='after'>
                     <field name="is_asset"/>
-                    <label for="is_asset" string="Is Asset?"/>
+                    <label for="is_asset" string="Is an Asset?"/>
+                    <newline/>
+                    <field name="is_person"/>
+                    <label for="is_person" string="Is a Person?"/>
                 </xpath>
                 <!--<xpath expr="//sheet/group/group" position='before'>-->
                     <!--<field name="is_risk"/>-->
@@ -18,7 +21,21 @@
                     <attribute name="attrs">{'invisible':[('is_asset','=',True)]}</attribute>
                 </xpath>
                 <xpath expr="//sheet/notebook" position="before">
-                    <field name="risk_ids" attrs="{'invisible':[('is_asset','=',False)]}" />
+                   <group  col="4" colspan="2"  >
+                        <group col="2" attrs="{'invisible':[('is_person','=',False)]}">
+                            <field name="first_name" colspan="2" />
+                            <field name="last_name" />
+                        </group>
+                        <group col="2" attrs="{'invisible':[('is_asset','=',False)]}">
+                            <field name="hostname" />
+                            <field name="ip_address" />
+                        </group>
+                   </group>
+                   <group>
+                       <field name="manager_id" attrs="{'invisible':[('is_asset','=',False)]}"/>
+                       <field name="asset_ids" />
+                       <field name="risk_ids" attrs="{'invisible':[('is_asset','=',False)]}" />
+                   </group>
                 </xpath>
                 <!--<field name='partner_id' position='replace'/>-->
                 <!--<xpath expr="//field[@name='contact_name']" position='after'>-->

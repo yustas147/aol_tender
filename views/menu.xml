@@ -41,6 +41,12 @@
             <field name="res_model">res.partner</field>
             <field name="domain">[('is_asset', '=', True)]</field>
         </record> 
+        <record model='ir.actions.act_window' id='aol_risk_phishing_act'>
+            <field name="name">Phishing risks</field>
+            <field name="res_model">aol.risk.phishing</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record> 
         
         
         <menuitem name="Aol tender" id="aol_menu_root"/>
@@ -52,6 +58,7 @@
                 <menuitem action="aol_attr_val_act" parent="technical1_id" id="aol_attr_val_act_id" sequence="70" />
                 <menuitem action="aol_risk_act" parent="technical1_id" id="aol_risk_act_id" sequence="80" />
                 <menuitem action="aol_asset_act" parent="technical1_id" id="aol_asset_act_id" sequence="90" />
+                <menuitem action="aol_risk_phishing_act" parent="technical1_id" id="aol_risk_phishing_act_id" sequence="100" />
         
     </data>
 </openerp>

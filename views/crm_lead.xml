@@ -7,42 +7,84 @@
             <field name="inherit_id" ref="crm.crm_case_form_view_leads"/>
             <field name="type">form</field>
             <field name="arch" type="xml">
+                <field name='partner_id' position='replace'/>
+                <field name='user_id' position='replace'/>
                 <xpath expr="//field[@name='fax']" position='replace'/>
-                <xpath expr="//sheet/group/group" position='before'>
-                    <field name="is_risk"/>
-                </xpath>
+                
+                <!--<xpath expr="//sheet/group/group" position="attributes">-->
                 <xpath expr="//sheet/group/group" position="attributes">
                     <attribute name="attrs">{'invisible':[('is_risk','=',True)]}</attribute>
                 </xpath>
-                <field name='partner_id' position='replace'/>
-                <xpath expr="//field[@name='contact_name']" position='after'>
-                    <div>
-                        <label for="partner_id" attrs="{'invisible': [('is_risk','=',True)]}"/>
-                        <label for="partner_id" string='Asset' attrs="{'invisible': [('is_risk','=',False)]}"/>
-                        <field name='partner_id' />
-                    </div>
+                <xpath expr="//sheet/group/group[2]" position="attributes">
+                    <attribute name="attrs">{'invisible':[('is_risk','=',True)]}</attribute>
                 </xpath>
-                <xpath expr="//notebook" position='after'>
+                <xpath expr="//sheet/group/group[1]" position='before'>
+                <!--<xpath expr="//field[@name='priority']" position='before'>-->
+                    <field name="is_risk"/>
+                   <group>
+                    <label for="user_id" string="Manager"/>
+                    <field name="user_id" nolabel="1"/>
+                    <field name='partner_id' string="Asset" />
+                   </group>
                    <group name='risk_group' attrs="{'invisible':[('is_risk','=',False)]}">
                     <field name='rawscan_id'/>
                     <field name='type_id'/>
-                    <field name='attr_val_ids'/>
                    </group>
                 </xpath>
-                <!--<field name='partner_id' position='attributes'>-->
-                    <!--<attribute name='string'>'Asset'</attribute>-->
-                <!--</field>-->
-                <!--<xpath expr="//field[@name='partner_name']" position='before'>-->
-                    <!--<field name="is_risk"/>-->
-                <!--</xpath>-->
-                <!--<field name='mobile' position='after'>-->
-                    <!--<field name="fax" attrs='{"invisible":[("is_risk","=",True)]}'/>-->
-                <!--</field>-->
-                <!--<field name='partner_id' position='replace'/>-->
-                <!--<field name='partner_id' position='before'>-->
-                    <!--<label for='partner_id' string='Asset' attrs="{'invisible':[('is_risk','=',False)]}"/>-->
-                <!--</field>-->
+                <xpath expr="//notebook" position="before">
+                 <div>
+                    <field name='attr_val_ids'>
+                        <tree>
+                            <field name="attr_id"/>
+                            <field name="value"/>
+                        </tree>
+                    </field>
+                 </div>
+                </xpath>
             </field>
         </record>
+        <record model="ir.ui.view" id="aol_risk_phishing_form">
+            <field name="name">aol.risk.phishing.form</field>
+            <field name="model">aol.risk.phishing</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1><field name="name" placeholder="Phishing risk descr..."/></h1>
+                    </div>
+                    
+                    <group>
+                        <group>
+                            <label for="user_id" string="Manager"/>
+                            <field name="user_id" nolabel="1"/>
+                            <field name='partner_id' string="Asset" />
+                        </group>
+                        <group name='risk_group'>
+                             <field name='rawscan_id'/>
+                             <field name='type_id'/>
+                             <field name="multi_email_open"/>
+                             <field name="multi_click_event"/>
+                             <field name="clicks_num"/>
+                        </group>
+                    </group>  
+                </sheet>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="aol_risk_phishing_tree">
+            <field name="name">aol.risk.phishing.tree</field>
+            <field name="model">aol.risk.phishing</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree>
+                             <field name="name"/>
+                             <field name="multi_email_open"/>
+                             <field name="multi_click_event"/>
+                             <field name="clicks_num"/>
+                </tree>
+            </field>
+            
+        </record>
+        
     </data>
 </openerp>

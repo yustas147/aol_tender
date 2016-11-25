@@ -41,7 +41,7 @@ class crm_lead(models.Model):
 #assum asset is res.partner
     type_id = fields.Many2one(comodel_name='aol.risk.type', string='Type of risk')
     attr_val_ids = fields.One2many(comodel_name='aol.attr.value', inverse_name='risk_id', 
-                                  string='Risk attribute values')
+                                  string='Risk custom attribute values')
     
    
     @api.multi  
@@ -69,4 +69,12 @@ class crm_lead(models.Model):
                 o2m_vals.append((0,0,{'value':False, 'risk_id':self.id, 'attr_id': attrib.id}))
         self.update({'attr_val_ids':o2m_vals})
                 
+class risk_phishing(models.Model):
+    _name="aol.risk.phishing"    
+    _inherits={'crm.lead':'crm_lead_id'}    
+    
+    clicks_num = fields.Integer(string="Clicks number")
+    multi_email_open = fields.Boolean(string="Multi Email Opened")
+    multi_click_event = fields.Boolean(string="Multi Click Event")
+    
     

@@ -109,7 +109,7 @@ class attr_value(models.Model):
     _name = 'aol.attr.value'
     
     value = fields.Char(string='Value')
-    attr_id = fields.Many2one(comodel_name='aol.attr', string='Attribute')
+    attr_id = fields.Many2one(comodel_name='aol.attr', string='Custom Attribute')
     #type_id = fields.Many2one(comodel_name='aol.risk.type', string='Risk type value')
     risk_id = fields.Many2one(comodel_name='crm.lead', string='Risk', ondelete='cascade')
     
