@@ -77,4 +77,18 @@ class risk_phishing(models.Model):
     multi_email_open = fields.Boolean(string="Multi Email Opened")
     multi_click_event = fields.Boolean(string="Multi Click Event")
     
+class risk_vulnerability(models.Model):
+    _name="aol.risk.vuln"    
+    _inherits={'crm.lead':'crm_lead_id'}    
+    
+    service_port = fields.Integer(string="Asset port")
+    asset_ip = fields.Integer(string="Asset port")
+    asset_os = fields.Char(string="OS")
+    asset_os_ver = fields.Char(string="Os Ver")
+    vuln_sev_lev = fields.Selection(selection=[('critical','Critical'),('severe','Severe'),('moderate','Moderate')], string="Severity Rating")
+    vuln_risk_score = fields.Float(string="CVSS")
+    
+    
+
+    
     

@@ -59,10 +59,9 @@
                             <label for="user_id" string="Manager"/>
                             <field name="user_id" nolabel="1"/>
                             <field name='partner_id' string="Asset" />
+                            <field name='type_id'/>
                         </group>
                         <group name='risk_group'>
-                             <field name='rawscan_id'/>
-                             <field name='type_id'/>
                              <field name="multi_email_open"/>
                              <field name="multi_click_event"/>
                              <field name="clicks_num"/>
