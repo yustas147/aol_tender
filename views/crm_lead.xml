@@ -85,5 +85,53 @@
             
         </record>
         
+        <record model="ir.ui.view" id="aol_risk_vuln_form">
+            <field name="name">aol.risk.vuln.form</field>
+            <field name="model">aol.risk.vuln</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1><field name="name" placeholder="Vulnerability risk descr..."/></h1>
+                    </div>
+                    
+                    <group>
+                        <group>
+                            <label for="user_id" string="Manager"/>
+                            <field name="user_id" nolabel="1"/>
+                            <field name='partner_id' string="Asset" />
+                            <field name='type_id'/>
+                            <field name='service_port'/>
+                            <field name='asset_ip'/>
+                            <field name='asset_os'/>
+                            <field name='asset_os_ver'/>
+                            <field name='plugin_name'/>
+                            <field name='plugin_id'/>
+                        </group>
+                        <group name='risk_group'>
+                             <field name="vuln_risk_score"/>
+                             <field name="vuln_sev_lev"/>
+                             <field name="service_name"/>
+                        </group>
+                    </group>  
+                </sheet>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="aol_risk_vuln_tree">
+            <field name="name">aol.risk.vuln.tree</field>
+            <field name="model">aol.risk.vuln</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree>
+                             <field name="name"/>
+                             <field name="vuln_risk_score"/>
+                             <field name="asset_ip"/>
+                             <field name="vuln_sev_lev"/>
+                </tree>
+            </field>
+            
+        </record>
+        
     </data>
 </openerp>

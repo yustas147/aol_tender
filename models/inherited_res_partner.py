@@ -21,6 +21,10 @@ class res_partner(models.Model):
     ip_address = fields.Char(string="IpAddress")
     first_name = fields.Char(string="First Name")
     last_name = fields.Char(string="Last Name")
+    
+    asset_type = fields.Many2one(comodel_name='aol.asset.type', string="Asset type")
+    
+    
 
     
     

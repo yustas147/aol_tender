@@ -81,11 +81,17 @@ class risk_vulnerability(models.Model):
     _name="aol.risk.vuln"    
     _inherits={'crm.lead':'crm_lead_id'}    
     
+    #rapid7
     service_port = fields.Integer(string="Asset port")
     asset_ip = fields.Integer(string="Asset port")
     asset_os = fields.Char(string="OS")
     asset_os_ver = fields.Char(string="Os Ver")
     vuln_sev_lev = fields.Selection(selection=[('critical','Critical'),('severe','Severe'),('moderate','Moderate')], string="Severity Rating")
+    #nessus
+    service_name = fields.Char(string="Service name")
+    plugin_name = fields.Char(string="Plugin name")
+    plugin_id = fields.Char(string="Plugin name")
+    #all
     vuln_risk_score = fields.Float(string="CVSS")
     
     

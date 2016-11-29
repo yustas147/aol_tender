@@ -27,6 +27,7 @@
                             <field name="last_name" />
                         </group>
                         <group col="2" attrs="{'invisible':[('is_asset','=',False)]}">
+                            <field name="asset_type" />
                             <field name="hostname" />
                             <field name="ip_address" />
                         </group>

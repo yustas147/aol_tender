@@ -47,11 +47,24 @@
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
         </record> 
+        <record model='ir.actions.act_window' id='aol_risk_vuln_act'>
+            <field name="name">Vulnerability risks</field>
+            <field name="res_model">aol.risk.vuln</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record> 
+        <record model='ir.actions.act_window' id='aol_asset_type_act'>
+            <field name="name">Asset types</field>
+            <field name="res_model">aol.asset.type</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record> 
         
         
         <menuitem name="Aol tender" id="aol_menu_root"/>
             <menuitem name="Models" parent="aol_menu_root" id="models_id" sequence="10"/>
                 <menuitem action="aol_asset_act" parent="models_id" id="aol_asset_act_id" sequence="90" />
+                <menuitem action="aol_asset_type_act" parent="models_id" id="aol_asset_type_act_id" sequence="100" />
                 <menuitem action="aol_risk_type_act" parent="models_id" id="aol_risk_type_act_id" sequence="50" />
                 <menuitem action="aol_attr_act" parent="models_id" id="aol_attr_act_id" sequence="60" />
                 <menuitem action="aol_attr_val_act" parent="models_id" id="aol_attr_val_act_id" sequence="70" />
@@ -61,6 +74,7 @@
             <menuitem name="Risks" parent="aol_menu_root" id="risks_id" sequence="30"/>
                 <menuitem action="aol_risk_act" parent="risks_id" id="aol_risk_act_id" sequence="80" />
                 <menuitem action="aol_risk_phishing_act" parent="risks_id" id="aol_risk_phishing_act_id" sequence="100" />
+                <menuitem action="aol_risk_vuln_act" parent="risks_id" id="aol_risk_vuln_act_id" sequence="90" />
         
     </data>
 </openerp>

@@ -91,7 +91,10 @@ class  rawscan_nessus(models.Model):
         d_scan = self.parse_att()
         self.rawscan_base_id.process_scanParseResults(**d_scan)
 
-
+class asset_type(models.Model):
+    _name = 'aol.asset.type'
+    
+    name = fields.Char(string="Asset type")
 
 class risk_type(models.Model):
     _name = 'aol.risk.type'
