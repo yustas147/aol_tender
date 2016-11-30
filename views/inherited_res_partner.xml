@@ -28,8 +28,11 @@
                         </group>
                         <group col="2" attrs="{'invisible':[('is_asset','=',False)]}">
                             <field name="asset_type" />
+                            <field name="asset_date" />
                             <field name="hostname" />
                             <field name="ip_address" />
+                            <field name="parent_id" />
+                            <field name="severity_rating" />
                         </group>
                    </group>
                    <group>

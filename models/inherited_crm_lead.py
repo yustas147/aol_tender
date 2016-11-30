@@ -42,6 +42,7 @@ class crm_lead(models.Model):
     type_id = fields.Many2one(comodel_name='aol.risk.type', string='Type of risk')
     attr_val_ids = fields.One2many(comodel_name='aol.attr.value', inverse_name='risk_id', 
                                   string='Risk custom attribute values')
+    date_f = fields.Datetime(string="Date of finding")
     
    
     @api.multi  
@@ -82,15 +83,15 @@ class risk_vulnerability(models.Model):
     _inherits={'crm.lead':'crm_lead_id'}    
     
     #rapid7
-    service_port = fields.Integer(string="Asset port")
-    asset_ip = fields.Integer(string="Asset port")
+    service_port = fields.Char(string="Asset port")
+    asset_ip = fields.Char(string="Asset IP")
     asset_os = fields.Char(string="OS")
     asset_os_ver = fields.Char(string="Os Ver")
     vuln_sev_lev = fields.Selection(selection=[('critical','Critical'),('severe','Severe'),('moderate','Moderate')], string="Severity Rating")
     #nessus
     service_name = fields.Char(string="Service name")
     plugin_name = fields.Char(string="Plugin name")
-    plugin_id = fields.Char(string="Plugin name")
+    plugin_id = fields.Char(string="Plugin id")
     #all
     vuln_risk_score = fields.Float(string="CVSS")
     

@@ -25,6 +25,7 @@
                     <label for="user_id" string="Manager"/>
                     <field name="user_id" nolabel="1"/>
                     <field name='partner_id' string="Asset" />
+                    <field name='date_f'/>
                    </group>
                    <group name='risk_group' attrs="{'invisible':[('is_risk','=',False)]}">
                     <field name='rawscan_id'/>
@@ -75,11 +76,13 @@
             <field name="model">aol.risk.phishing</field>
             <field name="type">tree</field>
             <field name="arch" type="xml">
-                <tree>
+                <tree editable="top">
                              <field name="name"/>
                              <field name="multi_email_open"/>
                              <field name="multi_click_event"/>
                              <field name="clicks_num"/>
+                             <field name="user_id" string="Manager"/>
+                             <field name="create_date"/>
                 </tree>
             </field>
             
@@ -123,11 +126,21 @@
             <field name="model">aol.risk.vuln</field>
             <field name="type">tree</field>
             <field name="arch" type="xml">
-                <tree>
+                <tree editable="top">
                              <field name="name"/>
-                             <field name="vuln_risk_score"/>
+                            <field name='partner_id' string="Asset" />
+                            <field name='user_id' string="Manager" />
+                            <field name='asset_os'/>
+                            <field name='asset_os_ver'/>
                              <field name="asset_ip"/>
+                             <field name="vuln_risk_score"/>
                              <field name="vuln_sev_lev"/>
+                            <field name='service_port'/>
+                            <field name='create_date'/>
+                            <field name='date_f'/>
+                            
+                            <!--<field name='plugin_name'/>-->
+                            <!--<field name='type_id'/>-->
                 </tree>
             </field>
             

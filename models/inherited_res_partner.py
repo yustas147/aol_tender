@@ -23,6 +23,9 @@ class res_partner(models.Model):
     last_name = fields.Char(string="Last Name")
     
     asset_type = fields.Many2one(comodel_name='aol.asset.type', string="Asset type")
+    severity_rating = fields.Integer(string="Severity Rating")
+    parent_id = fields.Many2one(comodel_name='res.partner', string="Parent Asset")
+    asset_date = fields.Datetime(string="Asset date")
     
     
 
