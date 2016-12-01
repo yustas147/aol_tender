@@ -27,18 +27,27 @@
                             <field name="last_name" />
                         </group>
                         <group col="2" attrs="{'invisible':[('is_asset','=',False)]}">
-                            <field name="asset_type" />
-                            <field name="asset_date" />
-                            <field name="hostname" />
-                            <field name="ip_address" />
-                            <field name="parent_id" />
-                            <field name="severity_rating" />
+                            <group>
+                                <field name="asset_type" />
+                                <field name="parent_id" />
+                                <field name="asset_date" />
+                                <field name="severity_rating" />
+                            </group>
+                            <group>
+                                <field name="server_ip_address" attrs="{'invisible':[('asset_type','!=','server')]}"/>
+                                <field name="server_os" attrs="{'invisible':[('asset_type','!=','server')]}"/>
+                                <field name="server_os_version" attrs="{'invisible':[('asset_type','!=','server')]}"/>
+                                <field name="website_hostname" attrs="{'invisible':[('asset_type','!=','website')]}"/>
+                                <field name="product_name" attrs="{'invisible':[('asset_type','!=','product')]}"/>
+                                <field name="software_name" attrs="{'invisible':[('asset_type','!=','software')]}"/>
+                                <field name="psw_description" attrs="{'invisible':[('asset_type','!=','software'),('asset_type','!=','product'),('asset_type','!=','website')]}"/>
+                            </group>
                         </group>
                    </group>
                    <group>
                        <field name="manager_id" attrs="{'invisible':[('is_asset','=',False)]}"/>
-                       <field name="asset_ids" />
-                       <field name="risk_ids" attrs="{'invisible':[('is_asset','=',False)]}" />
+                       <field name="asset_ids" attrs="{'invisible':[('is_person','=',False)]}" />
+                       <!--<field name="risk_ids" attrs="{'invisible':[('is_asset','=',False)]}" />-->
                    </group>
                 </xpath>
                 <!--<field name='partner_id' position='replace'/>-->
