@@ -15,6 +15,7 @@ class rawscan_base(models.Model):
     assets_ids = fields.Many2many(comodel_name='res.partner',relation='scans_assets')
     risk_ids = fields.One2many(comodel_name='crm.lead',inverse_name='rawscan_id')
     
+    
     def raw_risk_create(self):
         # 
         pass
@@ -54,15 +55,20 @@ class rawscan_base(models.Model):
                 
     @api.multi
     def procRisk(self, asset=None, risk=None):        
-        envRisk = self.env['crm.lead']
+        envRisk = self.env['aol.risk.vuln']
+#        envRisk = self.env['crm.lead']
+        riskType_Vulnerability = self.env['aol.risk.type'].search([('name','=','Vulnerability')])
+        _mylog.info("risk type record: %s" % (unicode(riskType_Vulnerability)))
       #  envRiskTypeValue = self.env['aol.attr.value']
         # need to implement check for existing risk
         def get_risk_name(risk):
             return unicode("Category: [%s] Descr: [%s] Severity: [%s]" % (risk['service_name'],risk['plugin_name'],risk['cvss']))
         
         risk_name = get_risk_name(risk)
-        if not envRisk.search([('rawscan_id','=', self.id),('name','=',risk_name)]):
-            return envRisk.create({'name': get_risk_name(risk), 'is_risk':True, 'partner_id':asset.id, 'description':unicode(risk), 'rawscan_id':self.id, })
+        if not envRisk.search([('rawscan_id','=', self.id),('name','=',risk_name),('partner_id.id','=',asset.id)]):
+            return envRisk.create({'name': get_risk_name(risk), 
+                                   'is_risk':True, 'partner_id':asset.id, 
+                                   'description':unicode(risk), 'rawscan_id':self.id, 'type_id':riskType_Vulnerability.id })
 
 
 

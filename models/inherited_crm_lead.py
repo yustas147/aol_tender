@@ -35,6 +35,15 @@ class crm_lead(models.Model):
 #class risk_base(models.Model):
     _inherit='crm.lead'
 #    _name='aol.risk.base'
+
+    @api.multi
+    def _get_vuln_id(self):
+        #res = self.vuln_ids[0].mapped('id')
+       # _mylog.info('res _get_vuln_id: %s' % (unicode(res)))
+        if len(self.vuln_ids):
+            self.vuln_id = self.vuln_ids[0]
+        #return res
+
     
     is_risk = fields.Boolean(string='AOL risk')
     rawscan_id = fields.Many2one(comodel_name='aol.rawscan.base', string='Origin scan')
@@ -43,6 +52,11 @@ class crm_lead(models.Model):
     attr_val_ids = fields.One2many(comodel_name='aol.attr.value', inverse_name='risk_id', 
                                   string='Risk custom attribute values')
     date_f = fields.Datetime(string="Date of finding")
+    
+    vuln_ids = fields.One2many(comodel_name='aol.risk.vuln', inverse_name='crm_lead_id', 
+                              string='Detailed risk record')
+    vuln_id = fields.Many2one(comodel_name='aol.risk.vuln', compute=_get_vuln_id)
+#    vuln_id = fields.Many2one(comodel_name='aol.risk.vuln', compute=_get_vuln_id)
     
    
     @api.multi  
@@ -95,7 +109,20 @@ class risk_vulnerability(models.Model):
     #all
     vuln_risk_score = fields.Float(string="CVSS")
     
-    
+
+    @api.multi  
+    def create_attrs(self, **kwargs):
+        attrEnv = self.env['aol.attr']
+        attr_valEnv = self.env['aol.attr.value']
+        for k,v in kwargs.iteritems():
+            attr_rec = attrEnv.search([('name','=',unicode(k))])
+            print (unicode(attr_rec))
+            if not len(attr_rec):
+                attr_rec = attrEnv.create({'name':unicode(k)})
+            attr_valEnv.create({'value':unicode(v), 'attr_id':attr_rec.id, 'risk_id':self.crm_lead_id.id})
+
+
+
 
     
     

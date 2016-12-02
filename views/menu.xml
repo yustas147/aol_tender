@@ -35,6 +35,8 @@
             <field name="name">Risks</field>
             <field name="res_model">crm.lead</field>
             <field name="domain">[('is_risk', '=', True)]</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,graph</field>
         </record> 
         <record model='ir.actions.act_window' id='aol_asset_act'>
             <field name="name">Assets</field>
@@ -59,6 +61,10 @@
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
         </record> 
+        <record model='ir.actions.act_window' id="crm.crm_case_category_act_leads_all">
+            <field name="view_mode">tree,form,graph</field>
+        </record> 
+        
         
         
         <menuitem name="Aol tender" id="aol_menu_root"/>

@@ -26,6 +26,16 @@
                     <field name="user_id" nolabel="1"/>
                     <field name='partner_id' string="Asset" />
                     <field name='date_f'/>
+                    <group string="Specific risk">
+                        <field name='vuln_id' nolabel="1"/>
+                    </group>
+                    
+                    <!--<field name='vuln_ids' nolabel="1">-->
+                        <!--<tree>-->
+                            <!--<field name="name"/>-->
+                        <!--</tree>-->
+                    <!--</field>-->
+                    <!--<field name='vuln_ids' attrs="{'invisible':[('type_id.name','!=','Vulnerability')]}"/>-->
                    </group>
                    <group name='risk_group' attrs="{'invisible':[('is_risk','=',False)]}">
                     <field name='rawscan_id'/>
@@ -44,6 +54,17 @@
                 </xpath>
             </field>
         </record>
+        
+        <record model="ir.ui.view" id="aol_crm_case_form_graph_view">
+            <field name="model">crm.lead</field>
+            <field name="arch" type="xml">
+                <graph type='bar'>
+                    <field name='partner_id' type='row'/>
+                    <field name='type_id' type='row'/>
+                </graph>
+            </field>
+        </record>
+        
         <record model="ir.ui.view" id="aol_risk_phishing_form">
             <field name="name">aol.risk.phishing.form</field>
             <field name="model">aol.risk.phishing</field>
@@ -116,6 +137,9 @@
                              <field name="vuln_risk_score"/>
                              <field name="vuln_sev_lev"/>
                              <field name="service_name"/>
+                             <group string="Common risk record" >
+                                <field name="crm_lead_id" nolabel="1"/>
+                             </group>
                         </group>
                     </group>  
                 </sheet>
