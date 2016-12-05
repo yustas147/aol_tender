@@ -28,6 +28,7 @@
                     <field name='date_f'/>
                     <group string="Specific risk">
                         <field name='vuln_id' nolabel="1"/>
+                        <field name='phish_id' nolabel="1"/>
                     </group>
                     
                     <!--<field name='vuln_ids' nolabel="1">-->
@@ -87,6 +88,9 @@
                              <field name="multi_email_open"/>
                              <field name="multi_click_event"/>
                              <field name="clicks_num"/>
+                             <group string="Common risk record" >
+                                <field name="crm_lead_id" nolabel="1"/>
+                             </group>
                         </group>
                     </group>  
                 </sheet>

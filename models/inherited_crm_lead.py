@@ -43,6 +43,12 @@ class crm_lead(models.Model):
         if len(self.vuln_ids):
             self.vuln_id = self.vuln_ids[0]
         #return res
+        
+    @api.multi
+    def _get_phish_id(self):
+        if len(self.phish_ids):
+            self.phish_id = self.phish_ids[0]
+        #return res
 
     
     is_risk = fields.Boolean(string='AOL risk')
@@ -55,7 +61,10 @@ class crm_lead(models.Model):
     
     vuln_ids = fields.One2many(comodel_name='aol.risk.vuln', inverse_name='crm_lead_id', 
                               string='Detailed risk record')
+    phish_ids = fields.One2many(comodel_name='aol.risk.phishing', inverse_name='crm_lead_id', 
+                              string='Detailed risk record')
     vuln_id = fields.Many2one(comodel_name='aol.risk.vuln', compute=_get_vuln_id)
+    phish_id = fields.Many2one(comodel_name='aol.risk.phishing', compute=_get_phish_id)
 #    vuln_id = fields.Many2one(comodel_name='aol.risk.vuln', compute=_get_vuln_id)
     
    
