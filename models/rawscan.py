@@ -68,7 +68,11 @@ class rawscan_base(models.Model):
         if not envRisk.search([('rawscan_id','=', self.id),('name','=',risk_name),('partner_id.id','=',asset.id)]):
             return envRisk.create({'name': get_risk_name(risk), 
                                    'is_risk':True, 'partner_id':asset.id, 
-                                   'description':unicode(risk), 'rawscan_id':self.id, 'type_id':riskType_Vulnerability.id })
+                                   'description':unicode(risk), 
+                                   'rawscan_id':self.id, 
+                                   'type_id':riskType_Vulnerability.id, 
+                                   'vuln_risk_score': float(risk['cvss']) 
+                                   })
 
 
 

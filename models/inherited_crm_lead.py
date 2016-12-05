@@ -43,6 +43,12 @@ class crm_lead(models.Model):
         if len(self.vuln_ids):
             self.vuln_id = self.vuln_ids[0]
         #return res
+        
+    @api.multi
+    def _get_phish_id(self):
+        if len(self.phish_ids):
+            self.phish_id = self.phish_ids[0]
+        #return res
 
     
     is_risk = fields.Boolean(string='AOL risk')
@@ -55,7 +61,10 @@ class crm_lead(models.Model):
     
     vuln_ids = fields.One2many(comodel_name='aol.risk.vuln', inverse_name='crm_lead_id', 
                               string='Detailed risk record')
+    phish_ids = fields.One2many(comodel_name='aol.risk.phishing', inverse_name='crm_lead_id', 
+                              string='Detailed risk record')
     vuln_id = fields.Many2one(comodel_name='aol.risk.vuln', compute=_get_vuln_id)
+    phish_id = fields.Many2one(comodel_name='aol.risk.phishing', compute=_get_phish_id)
 #    vuln_id = fields.Many2one(comodel_name='aol.risk.vuln', compute=_get_vuln_id)
     
    
@@ -96,20 +105,36 @@ class risk_vulnerability(models.Model):
     _name="aol.risk.vuln"    
     _inherits={'crm.lead':'crm_lead_id'}    
     
-    #rapid7
     service_port = fields.Char(string="Asset port")
     asset_ip = fields.Char(string="Asset IP")
     asset_os = fields.Char(string="OS")
     asset_os_ver = fields.Char(string="Os Ver")
-    vuln_sev_lev = fields.Selection(selection=[('critical','Critical'),('severe','Severe'),('moderate','Moderate')], string="Severity Rating")
-    #nessus
+#    vuln_sev_lev = fields.Char(_compute='_get_sev_rating', string='Severty Rating')
+    vuln_sev_lev = fields.Selection(compute='_get_sev_rating', string='Severty Rating', selection=[('none','None'),('low','Low'),('critical','Critical'),('high','High'),('medium','Medium')])
+#    sev_lev = fields.Selection(_compute='_get_sev_rating', string='Severty Rating', selection=[('none','None'),('low','Low'),('critical','Critical'),('high','High'),('medium','Medium')])
     service_name = fields.Char(string="Service name")
     plugin_name = fields.Char(string="Plugin name")
     plugin_id = fields.Char(string="Plugin id")
-    #all
     vuln_risk_score = fields.Float(string="CVSS")
-    
 
+    @api.depends('vuln_risk_score')    
+    def _get_sev_rating(self):
+        _mylog.info('#################### _get_sev_lev fired!')
+        for rec in self:
+            if float(rec.vuln_risk_score) <= 0.01:
+                rec.vuln_sev_lev = 'none'
+            elif float(rec.vuln_risk_score) <= 2:
+                rec.vuln_sev_lev = 'low'
+            elif float(rec.vuln_risk_score) <= 4:
+                rec.vuln_sev_lev = 'medium'
+            elif float(rec.vuln_risk_score) <= 6:
+                rec.vuln_sev_lev = 'high'
+            else:
+                rec.vuln_sev_lev = 'critical'
+        return True
+            
+        
+    
     @api.multi  
     def create_attrs(self, **kwargs):
         attrEnv = self.env['aol.attr']
