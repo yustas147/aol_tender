@@ -66,6 +66,8 @@ class crm_lead(models.Model):
     vuln_id = fields.Many2one(comodel_name='aol.risk.vuln', compute=_get_vuln_id)
     phish_id = fields.Many2one(comodel_name='aol.risk.phishing', compute=_get_phish_id)
 #    vuln_id = fields.Many2one(comodel_name='aol.risk.vuln', compute=_get_vuln_id)
+    a_user_id = fields.Many2one(comodel_name='res.users', string="Assoc. User")
+    
     
    
     @api.multi  

@@ -26,6 +26,7 @@
                     <field name="user_id" nolabel="1"/>
                     <field name='partner_id' string="Asset" />
                     <field name='date_f'/>
+                    <field name='a_user_id'/>
                     <group string="Specific risk">
                         <field name='vuln_id' nolabel="1"/>
                         <field name='phish_id' nolabel="1"/>

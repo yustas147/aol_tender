@@ -4,7 +4,7 @@ from datetime import datetime
 from openerp import tools
 import logging
 
-_mylog = logging.getLogger('YUSTAS#################################################')
+_mylog = logging.getLogger('YUSTAS####')
 
 class res_partner(models.Model):
     #_name = 'res.partner'
@@ -34,7 +34,13 @@ class res_partner(models.Model):
     software_name = fields.Char(string="Software Name")
     psw_description = fields.Text(string="Description")
     decommissioned = fields.Boolean(string="Decommissioned in 3 month")
+    risk_count = fields.Integer(string="Risk Count", compute='_get_risk_count')
     
+    @api.one
+    @api.depends('risk_ids')
+    def _get_risk_count(self):
+        _mylog.info('self.id, name: %s # %s' % (unicode(self.id),unicode(self.name)))
+        return len(self.risk_ids)
     
     
 
