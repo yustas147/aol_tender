@@ -32,7 +32,7 @@
                                 <field name="parent_id" />
                                 <field name="asset_date" />
                                 <field name="severity_rating" />
-                                <field name="risk_count" />
+                                <!--<field name="risk_count" />-->
                                 <field name="decommissioned" />
                             </group>
                             <group>

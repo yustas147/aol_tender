@@ -8,8 +8,9 @@
             <field name="type">form</field>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='active']" position='after'>
-                    <field name="risk_count"/>
-                    <field name="risk_ids"/>
+                    <field name="risk_cnt"/>
+                    <field name="risk_ids" widget="many2many_list"/>
+                    <button name="get_risk_cnt" string="grc" type="object"/>
                 </xpath>
             </field>
         </record>

@@ -22,4 +22,5 @@
 
 
 #from . import mail_compose_message
-from . import inherited_crm_lead, rawscan, yanp, inherited_res_partner
+from . import inherited_crm_lead, rawscan, yanp, inherited_res_partner, inherited_res_users
+
