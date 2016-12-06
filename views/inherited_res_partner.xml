@@ -32,7 +32,7 @@
                                 <field name="parent_id" />
                                 <field name="asset_date" />
                                 <field name="severity_rating" />
-                                <!--<field name="risk_count" />-->
+                                <field name="risk_count" />
                                 <field name="decommissioned" />
                             </group>
                             <group>
@@ -80,6 +80,17 @@
                 <!--<field name='partner_id' position='before'>-->
                     <!--<label for='partner_id' string='Asset' attrs="{'invisible':[('is_risk','=',False)]}"/>-->
                 <!--</field>-->
+            </field>
+        </record>
+        <record id="inherited_view_partner_tree_inherit_aol" model="ir.ui.view" >
+            <field name="name">res.partner.tree.inherit.aol</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_tree"/>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='user_id']" position='after'>
+                    <field name="risk_count"/>
+                </xpath>
             </field>
         </record>
     </data>
