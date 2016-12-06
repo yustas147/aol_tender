@@ -33,6 +33,7 @@ class res_partner(models.Model):
     product_name = fields.Char(string="Product Name")
     software_name = fields.Char(string="Software Name")
     psw_description = fields.Text(string="Description")
+    decommissioned = fields.Boolean(string="Decommissioned in 3 month")
     
     
     

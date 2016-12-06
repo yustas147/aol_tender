@@ -136,6 +136,7 @@
                             <field name='asset_os_ver'/>
                             <field name='plugin_name'/>
                             <field name='plugin_id'/>
+                            <field name='date_f'/>
                         </group>
                         <group name='risk_group'>
                              <field name="vuln_risk_score"/>

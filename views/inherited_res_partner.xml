@@ -32,6 +32,7 @@
                                 <field name="parent_id" />
                                 <field name="asset_date" />
                                 <field name="severity_rating" />
+                                <field name="decommissioned" />
                             </group>
                             <group>
                                 <field name="server_ip_address" attrs="{'invisible':[('asset_type','!=','server')]}"/>

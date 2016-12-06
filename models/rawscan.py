@@ -71,6 +71,7 @@ class rawscan_base(models.Model):
                                    'description':unicode(risk), 
                                    'rawscan_id':self.id, 
                                    'type_id':riskType_Vulnerability.id, 
+                                   'date_f': self.create_date, 
                                    'vuln_risk_score': float(risk['cvss']) 
                                    })
 
